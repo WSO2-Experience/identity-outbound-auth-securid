@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--<parent>
+        <artifactId>org.wso2.carbon.extension.identity.authenticator.securid</artifactId>
+        <groupId>org.wso2.carbon.extension.identity.authenticator</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>-->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.wso2.carbon.extension.archetype.identity.authenticator</groupId>
+    <artifactId>org.wso2.carbon.extention.identity.authenticator.endpoint</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>WSO2 Carbon - Identity Application Authentication RSA SecurID Endpoint</name>
+    <description>Identity Application Authentication RSA SecurID Endpoint</description>
+    <url>http://wso2.org</url>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+                <version>2.3.2</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/webapp</directory>
+                        </resource>
+                    </webResources>
+                    <warName>securidauthenticationendpoint</warName>
+                    <packagingExcludes>WEB-INF/lib/commons-logging*.jar</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
