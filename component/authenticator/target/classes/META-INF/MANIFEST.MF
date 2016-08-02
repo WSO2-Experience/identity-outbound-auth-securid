@@ -19,7 +19,7 @@ Bundle-Name: org.wso2.carbon.extension.identity.authenticator.rsasecur
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.7.0_79
 Bundle-Version: 1.0.0
-Bnd-LastModified: 1470132290018
+Bnd-LastModified: 1470135800717
 Bundle-ManifestVersion: 2
 Import-Package: com.rsa.authagent.authapi;resolution:=optional,javax.s
  ervlet;version="[2.6,3)",javax.servlet.http;version="[2.6,3)",org.apa

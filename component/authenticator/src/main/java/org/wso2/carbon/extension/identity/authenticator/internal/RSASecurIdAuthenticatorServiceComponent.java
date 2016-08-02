@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  *  WSO2 Inc. licenses this file to you under the Apache License,
  *  Version 2.0 (the "License"); you may not use this file except
@@ -16,9 +16,7 @@
  *  under the License.
  *
  */
-
 package org.wso2.carbon.extension.identity.authenticator.internal;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
@@ -32,11 +30,11 @@ import java.util.Hashtable;
  * @scr.component name="identity.application.authenticator.RSASecurId.component" immediate="true"
  */
 public class RSASecurIdAuthenticatorServiceComponent {
-
     private static Log log = LogFactory.getLog(RSASecurIdAuthenticatorServiceComponent.class);
     /**
- *
- */
+     *
+     * @param ctxt
+     */
     protected void activate(ComponentContext ctxt) {
         try {
             RSASecurIdAuthenticator authenticator = new RSASecurIdAuthenticator();
@@ -50,14 +48,14 @@ public class RSASecurIdAuthenticatorServiceComponent {
             log.fatal("Error while activating the RSASecurId authenticator ", e);
         }
     }
-/**
- *
- */
+
+    /**
+     *
+     * @param ctxt
+     */
     protected void deactivate(ComponentContext ctxt) {
         if (log.isDebugEnabled()) {
             log.debug("RSASecurId authenticator is deactivated");
         }
     }
-
-
 }

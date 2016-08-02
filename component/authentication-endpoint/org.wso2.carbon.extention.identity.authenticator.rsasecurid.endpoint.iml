@@ -15,6 +15,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.rsa.securid:authapi:1.0" level="project" />
   </component>
   <component name="POM File Configuration" pomFile="" />
 </module>

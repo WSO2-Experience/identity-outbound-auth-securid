@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  *  WSO2 Inc. licenses this file to you under the Apache License,
  *  Version 2.0 (the "License"); you may not use this file except
@@ -16,7 +16,6 @@
  *  under the License.
  *
  */
-
 package org.wso2.carbon.extension.identity.authenticator;
 import com.rsa.authagent.authapi.AuthAgentException;
 import com.rsa.authagent.authapi.AuthSession;
@@ -51,23 +50,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /**
  * Authenticator of RSASecurId
  */
 public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
         implements LocalApplicationAuthenticator {
-
     private static Log log = LogFactory.getLog(RSASecurIdAuthenticator.class);
 
     /**
-     * Get the friendly name of the Authenticator
+     *
+     * @return
      */
     @Override
     public String getFriendlyName() {
         return RSASecurIdAuthenticatorConstants.AUTHENTICATOR_FRIENDLY_NAME;
     }
 
+    /**
+     *
+     * @param httpServletRequest
+     * @return
+     */
     @Override
     public boolean canHandle(HttpServletRequest httpServletRequest) {
 
@@ -78,6 +81,13 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
                 getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN)));
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param authenticationContext
+     * @throws AuthenticationFailedException
+     */
     @Override
     protected void initiateAuthenticationRequest(HttpServletRequest request,
                                                  HttpServletResponse response,
@@ -128,6 +138,11 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
         return authenticatedUser;
     }
 
+    /**
+     *
+     * @param httpServletRequest
+     * @return
+     */
     @Override
     public String getContextIdentifier(HttpServletRequest httpServletRequest) {
         return null;
@@ -141,6 +156,13 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
         return RSASecurIdAuthenticatorConstants.AUTHENTICATOR_NAME;
     }
 
+    /**
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param authenticationContext
+     * @throws AuthenticationFailedException
+     */
     @Override
     protected void processAuthenticationResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationContext authenticationContext) throws AuthenticationFailedException {
         AuthenticatedUser authenticatedUser = getUsername(authenticationContext);
@@ -157,10 +179,8 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
         } catch (UserStoreException e) {
             throw new AuthenticationFailedException("Error occurred while loading user realm or user store manager : " + e.getMessage());
         }
-
         AuthSessionFactory api = null;
         String userId = getUsername(authenticationContext).getAuthenticatedSubjectIdentifier();
-
         String passCode = httpServletRequest.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
         if (StringUtils.isNotEmpty(userId) && StringUtils.isNotEmpty(passCode)) {
             try {
@@ -193,6 +213,4 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
             throw new AuthenticationFailedException("UserID & Password are Empty");
         }
     }
-
-    
 }
