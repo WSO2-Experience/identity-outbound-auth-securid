@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RSA Bundle.iml" filepath="$PROJECT_DIR$/RSA Bundle.iml" />
       <module fileurl="file://$PROJECT_DIR$/component/authenticator/org.wso2.carbon.extension.identity.authenticator.rsasecurid.iml" filepath="$PROJECT_DIR$/component/authenticator/org.wso2.carbon.extension.identity.authenticator.rsasecurid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.endpoint.iml" filepath="$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.endpoint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint.iml" filepath="$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint.iml" />
     </modules>
   </component>
 </project>

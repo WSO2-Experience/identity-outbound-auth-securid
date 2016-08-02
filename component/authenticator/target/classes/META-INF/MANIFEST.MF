@@ -15,11 +15,11 @@ Service-Component: OSGI-INF/serviceComponents.xml
 Built-By: NifrasIsmail
 Tool: Bnd-1.43.0
 Bundle-Name: org.wso2.carbon.extension.identity.authenticator.rsasecur
- id
+ id.connector
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.7.0_79
 Bundle-Version: 1.0.0
-Bnd-LastModified: 1470106424832
+Bnd-LastModified: 1470132290018
 Bundle-ManifestVersion: 2
 Import-Package: com.rsa.authagent.authapi;resolution:=optional,javax.s
  ervlet;version="[2.6,3)",javax.servlet.http;version="[2.6,3)",org.apa
@@ -41,5 +41,5 @@ Import-Package: com.rsa.authagent.authapi;resolution:=optional,javax.s
  user.core.service;resolution:=optional;version="[4.4,5)",org.wso2.car
  bon.utils;resolution:=optional;version="[4.4,5)"
 Bundle-SymbolicName: org.wso2.carbon.extension.identity.authenticator.
- rsasecurid
+ rsasecurid.connector
 
