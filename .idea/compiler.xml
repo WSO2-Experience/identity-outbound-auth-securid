@@ -27,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid" target="1.7" />
+      <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid.feature" target="1.5" />
       <module name="org.wso2.carbon.extention.identity.authenticator.endpoint" target="1.7" />
       <module name="org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint" target="1.7" />
       <module name="RSA Bundle" target="1.5" />

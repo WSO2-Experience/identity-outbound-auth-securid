@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77b93990-ba68-4a10-92ee-44e6824a6927" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_rsa_securid_authapi_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticator.class" afterPath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticatorConstants.class" afterPath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticatorConstants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/internal/RSASecurIdAuthenticatorServiceComponent.class" afterPath="$PROJECT_DIR$/component/authenticator/target/classes/org/wso2/carbon/extension/identity/authenticator/internal/RSASecurIdAuthenticatorServiceComponent.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feature/feature.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feature/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authentication-endpoint/target/securidauthenticationendpoint.war" afterPath="$PROJECT_DIR$/component/authentication-endpoint/target/securidauthenticationendpoint.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/target/org.wso2.carbon.extension.identity.authenticator.rsasecurid.connector-1.0.0.jar" afterPath="$PROJECT_DIR$/component/authenticator/target/org.wso2.carbon.extension.identity.authenticator.rsasecurid.connector-1.0.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSA Bundle.iml" afterPath="$PROJECT_DIR$/RSA Bundle.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint.iml" afterPath="$PROJECT_DIR$/component/authentication-endpoint/org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authentication-endpoint/pom.xml" afterPath="$PROJECT_DIR$/component/authentication-endpoint/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/pom.xml" afterPath="$PROJECT_DIR$/component/authenticator/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticator.java" afterPath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticatorConstants.java" afterPath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/RSASecurIdAuthenticatorConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/internal/RSASecurIdAuthenticatorServiceComponent.java" afterPath="$PROJECT_DIR$/component/authenticator/src/main/java/org/wso2/carbon/extension/identity/authenticator/internal/RSASecurIdAuthenticatorServiceComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authentication-endpoint/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/component/authentication-endpoint/target/maven-archiver/pom.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/component/authenticator/target/classes/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/component/authenticator/target/classes/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="identity-outbound-auth-mepin-master.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,6 +18,7 @@
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/component/authentication-endpoint/target/" />
     <ignored path="$PROJECT_DIR$/component/authenticator/target/" />
+    <ignored path="$PROJECT_DIR$/feature/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,14 +36,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+            <state relative-caret-position="264">
+              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/feature/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-321">
+              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feature.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feature/feature.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -73,8 +88,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="107" column="9" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -131,6 +146,7 @@
         <option value="$PROJECT_DIR$/component/authentication-endpoint/pom.xml" />
         <option value="$PROJECT_DIR$/component/authenticator/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/feature/pom.xml" />
       </list>
     </option>
   </component>
@@ -227,11 +243,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authenticator" />
+              <option name="myItemId" value="feature" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -252,14 +264,6 @@
               <option name="myItemId" value="authenticator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -272,122 +276,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authenticator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wso2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carbon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="identity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authenticator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="identity-outbound-auth-mepin-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSA Bundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authenticator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wso2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carbon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="identity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authenticator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="internal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="identity-outbound-auth-mepin-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSA Bundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="authentication-endpoint" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -404,6 +292,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\NifrasIsmail\Desktop\RSA SecurID\Testing Env\RSA Bundle" />
+      <recent name="C:\Users\NifrasIsmail\Desktop\RSA SecurID\Testing Env\RSA Bundle\feature" />
       <recent name="C:\Users\NifrasIsmail\Desktop\RSA SecurID\Testing Env\RSA Bundle\component\authentication-endpoint" />
       <recent name="C:\Users\NifrasIsmail\Desktop\RSA SecurID\Testing Env\RSA Bundle\component\authenticator" />
     </key>
@@ -869,13 +759,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/feature/feature.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/component/authenticator/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="107" column="9" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -885,8 +783,19 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+        <state relative-caret-position="264">
+          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-321">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding />
         </state>
       </provider>

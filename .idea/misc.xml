@@ -42,6 +42,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/component/authenticator/pom.xml" />
+        <option value="$PROJECT_DIR$/feature/pom.xml" />
       </set>
     </option>
   </component>
