@@ -37,10 +37,11 @@
         </profile>
     </profiles>
     <dependencies>
-    <dependency>
-        <groupId>com.rsa.securid</groupId>
-        <artifactId>authapi</artifactId>
-        <version>1.0</version>
-    </dependency>
+        <dependency>
+            <groupId>com.rsa.securid</groupId>
+            <artifactId>authapi</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
+
 </project>

@@ -104,8 +104,7 @@
             <artifactId>json</artifactId>
             <version>${wso2.json}</version>
         </dependency>
-
-    </dependencies>
+        </dependencies>
     <build>
         <pluginManagement>
             <plugins>

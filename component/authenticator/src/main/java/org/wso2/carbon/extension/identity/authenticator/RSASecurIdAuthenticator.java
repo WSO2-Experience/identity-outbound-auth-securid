@@ -14,14 +14,15 @@
  *  KIND, either express or implied.  See the License for the
  *  specific language governing permissions and limitations
  *  under the License.
- *
  */
 package org.wso2.carbon.extension.identity.authenticator;
+
 import com.rsa.authagent.authapi.AuthAgentException;
 import com.rsa.authagent.authapi.AuthSession;
 import com.rsa.authagent.authapi.AuthSessionFactory;
 import org.apache.commons.lang.StringUtils;
-import org.apache.oltu.oauth2.client.response.OAuthClientResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.LocalApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.config.ConfigurationFacade;
@@ -29,37 +30,31 @@ import org.wso2.carbon.identity.application.authentication.framework.config.mode
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
 import org.wso2.carbon.identity.application.authentication.framework.exception.AuthenticationFailedException;
 import org.wso2.carbon.identity.application.authentication.framework.model.AuthenticatedUser;
+import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkConstants;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkUtils;
-import org.wso2.carbon.identity.application.authentication.framework.FederatedApplicationAuthenticator;
-import org.wso2.carbon.identity.application.common.model.Property;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.wso2.carbon.identity.application.common.util.IdentityApplicationConstants;
 import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
 import org.wso2.carbon.user.api.UserRealm;
 import org.wso2.carbon.user.api.UserStoreException;
-import org.wso2.carbon.user.api.UserStoreManager;
 import org.wso2.carbon.user.core.service.RealmService;
-import org.wso2.carbon.user.core.util.UserCoreUtil;
 import org.wso2.carbon.utils.CarbonUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
 /**
- * Authenticator of RSASecurId
+ * RSA SecurId 2-Factor Authenticator
  */
 public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
         implements LocalApplicationAuthenticator {
+
     private static Log log = LogFactory.getLog(RSASecurIdAuthenticator.class);
 
     /**
+     * Get the friendly name of the RSA SecurID Authenticator
      *
-     * @return
+     * @return RSA SecurId Authenticator Friendly Name
      */
     @Override
     public String getFriendlyName() {
@@ -67,63 +62,81 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
     }
 
     /**
+     * Check authentication request can be handled or not.
      *
-     * @param httpServletRequest
-     * @return
+     * @param request http servlet request to the authenticator
+     * @return TRUE if RSA_USER_TOKEN exists otherwise FALSE
      */
     @Override
-    public boolean canHandle(HttpServletRequest httpServletRequest) {
-
+    public boolean canHandle(HttpServletRequest request) {
         if (log.isDebugEnabled()) {
-            log.debug("Inside SecurIdAuthenticator.canHandle()");
+            log.debug("Inside RSA SecurId Authenticator canHandle()");
         }
-        return (StringUtils.isNotEmpty(httpServletRequest.
-                getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN)));
+        String userToken = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
+        if (StringUtils.isNotEmpty(userToken)) {
+            return true;
+        }
+        return false;
     }
 
     /**
+     * Allowing user for retrying another attempt
      *
-     * @param request
-     * @param response
-     * @param authenticationContext
-     * @throws AuthenticationFailedException
+     * @return TRUE or FALSE
+     */
+    protected boolean retryAuthenticationEnabled() {
+        return true;
+    }
+
+    /**
+     * Initiating th authentication request to RSA Authenticator
+     *
+     * @param request               http servlet request to the authentication framework
+     * @param response              http servlet response from authentication framework
+     * @param authenticationContext authenticationContext contains information about authentication
+     *                              flow
+     * @throws AuthenticationFailedException Throwing the authenticationFailedException
      */
     @Override
     protected void initiateAuthenticationRequest(HttpServletRequest request,
                                                  HttpServletResponse response,
                                                  AuthenticationContext authenticationContext)
             throws AuthenticationFailedException {
-        AuthenticatedUser authenticatedUser = getUsername(authenticationContext);
-        String username = authenticatedUser.getAuthenticatedSubjectIdentifier();
-        String rsaLoginPage;
-        if (authenticatedUser == null) {
-            throw new AuthenticationFailedException
-                    ("Authentication failed!. Cannot proceed further without identifying the user");
+        if (log.isDebugEnabled()) {
+            log.debug("Inside the initiateAuthenticationRequest of RSA SecurID Authenticator");
         }
+        String rsaLoginPage;
+        String retryParam = "";
+
         try {
+            if (authenticationContext.isRetrying()) {
+                if (log.isDebugEnabled()) {
+                    log.debug("Retrying is enabled for RSA SecurID Authenticator");
+                }
+                retryParam = RSASecurIdAuthenticatorConstants.RETRY_PARAMS;
+            }
             rsaLoginPage = ConfigurationFacade.getInstance().getAuthenticationEndpointURL()
                     .replace("authenticationendpoint/login.do", RSASecurIdAuthenticatorConstants.LOGIN_ENDPOINT);
-            Map<String, String> authenticatorProperties = authenticationContext
-                    .getAuthenticatorProperties();
             String queryParams = FrameworkUtils
                     .getQueryStringWithFrameworkContextId(authenticationContext.getQueryParams(),
                             authenticationContext.getCallerSessionKey(),
                             authenticationContext.getContextIdentifier());
             response.sendRedirect(response.encodeRedirectURL(rsaLoginPage
-                    + "?" + queryParams ));
+                    + "?" + queryParams + retryParam));
             if (log.isDebugEnabled()) {
                 log.debug("Request send to " + rsaLoginPage);
             }
-            authenticationContext.setCurrentAuthenticator(getName());
         } catch (IOException e) {
-            throw new AuthenticationFailedException(e.getMessage(), e);
+            throw new AuthenticationFailedException("RSA SecurId Authenticator could not handle the inputs " +
+                    "and outputs", e);
         }
     }
 
     /**
-     * Get the username from authentication context.
+     * Get the previously authenticated local user
      *
-     * @param authenticationContext the authentication context
+     * @param authenticationContext authenticationContext contains information about authentication
+     * @return authenticatedUser information
      */
     private AuthenticatedUser getUsername(AuthenticationContext authenticationContext) {
         AuthenticatedUser authenticatedUser = null;
@@ -139,17 +152,20 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
     }
 
     /**
+     * Get the context identifier of authentication flow
      *
-     * @param httpServletRequest
-     * @return
+     * @param request http servlet request to the authentication framework
+     * @return sessionDataKey
      */
     @Override
-    public String getContextIdentifier(HttpServletRequest httpServletRequest) {
-        return null;
+    public String getContextIdentifier(HttpServletRequest request) {
+        return request.getParameter(FrameworkConstants.SESSION_DATA_KEY);
     }
 
     /**
-     * Get the name of the Authenticator
+     * Get the name of the RSA SecurId authenticator
+     *
+     * @return name of the authenticator
      */
     @Override
     public String getName() {
@@ -157,60 +173,80 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
     }
 
     /**
+     * Processing and validating the authentication
      *
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @param authenticationContext
+     * @param request               http servlet request to the authentication framework
+     * @param response              http servlet response from the authentication framework
+     * @param authenticationContext authenticationContext contains information about authentication
+     *                              flow
      * @throws AuthenticationFailedException
      */
     @Override
-    protected void processAuthenticationResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationContext authenticationContext) throws AuthenticationFailedException {
+    protected void processAuthenticationResponse(HttpServletRequest request,
+                                                 HttpServletResponse response,
+                                                 AuthenticationContext authenticationContext)
+            throws AuthenticationFailedException {
+        if (log.isDebugEnabled()) {
+            log.debug("Inside the processAuthenticationResponse");
+        }
+        int authStatus;
         AuthenticatedUser authenticatedUser = getUsername(authenticationContext);
         String username = authenticatedUser.getAuthenticatedSubjectIdentifier();
         String tenantDomain = authenticatedUser.getTenantDomain();
-        String userStoreDomain = authenticatedUser.getUserStoreDomain();
         int tenantId = IdentityTenantUtil.getTenantId(tenantDomain);
         RealmService realmService = IdentityTenantUtil.getRealmService();
         UserRealm userRealm;
-        UserStoreManager userStoreManager;
+        String rsaUserId;
         try {
             userRealm = realmService.getTenantUserRealm(tenantId);
-            userStoreManager = (UserStoreManager) userRealm.getUserStoreManager();
+            rsaUserId = userRealm.getUserStoreManager()
+                    .getUserClaimValue(username, RSASecurIdAuthenticatorConstants.RSASecurId_CLAIM, null);
         } catch (UserStoreException e) {
-            throw new AuthenticationFailedException("Error occurred while loading user realm or user store manager : " + e.getMessage());
+            throw new AuthenticationFailedException("Error occurred while loading user realm or user store manager : ",
+                    e);
         }
-        AuthSessionFactory api = null;
-        String userId = getUsername(authenticationContext).getAuthenticatedSubjectIdentifier();
-        String passCode = httpServletRequest.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
-        if (StringUtils.isNotEmpty(userId) && StringUtils.isNotEmpty(passCode)) {
+        String passCode = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
+        AuthSessionFactory authSessionFactory = null;
+        if (StringUtils.isNotEmpty(rsaUserId) && StringUtils.isNotEmpty(passCode)) {
+            AuthSession session = null;
             try {
                 String configPath = CarbonUtils.getCarbonConfigDirPath() + File.separator
-                        + "identity" + File.separator;
+                        + RSASecurIdAuthenticatorConstants.IDENTIY_CLIAM + File.separator;
                 configPath = configPath + RSASecurIdAuthenticatorConstants.RSA_PROPERTIES_FILE;
-                api = AuthSessionFactory.getInstance(configPath);
-                AuthSession session;
-                session = api.createUserSession();
-                int authStatus = AuthSession.ACCESS_DENIED;
-                authStatus = session.lock(userId);
-                authStatus = session.check(userId, passCode);
-                session.close();
-                if (authStatus == AuthSession.ACCESS_OK) {
-                    authenticationContext.setSubject(AuthenticatedUser
-                            .createLocalAuthenticatedUserFromSubjectIdentifier(userId));
+                authSessionFactory = AuthSessionFactory.getInstance(configPath);
+                session = authSessionFactory.createUserSession();
+                session.lock(rsaUserId);
+                authStatus = session.check(rsaUserId, passCode);
+                if (log.isDebugEnabled()) {
+                    log.debug("User authentication process completed");
                 }
-
+                if (authStatus == AuthSession.ACCESS_OK) {
+                    authenticationContext.setSubject(authenticatedUser);
+                    if (log.isDebugEnabled()) {
+                        log.debug("Subject set to : " + rsaUserId);
+                    }
+                } else {
+                    throw new AuthenticationFailedException("User enters invalid PIN + TOKEN");
+                }
             } catch (AuthAgentException e) {
-                throw new AuthenticationFailedException("Cannot Create the API : " + e.getMessage());
-            }finally {
-                if(api != null)
+                throw new AuthenticationFailedException("Authentication Agent failed to create connection to authSessionFactory", e);
+
+            } finally {
+                if (authSessionFactory != null)
                     try {
-                        api.shutdown();
+                        session.close();
+                        if (log.isDebugEnabled()) {
+                            log.debug("Current session is closed");
+                        }
+                        authSessionFactory.shutdown();
                     } catch (AuthAgentException e) {
-                        throw new AuthenticationFailedException("Could not able to shut downn the API : " +  e.getMessage());
+                        throw new AuthenticationFailedException("Could not able to shut down the API", e);
                     }
             }
         } else {
-            throw new AuthenticationFailedException("UserID & Password are Empty");
+            throw new AuthenticationFailedException("User Id and/or PIN+Token is Empty");
         }
     }
+
+
 }

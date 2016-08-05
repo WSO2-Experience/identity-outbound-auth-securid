@@ -17,30 +17,25 @@
  *
  */
 package org.wso2.carbon.extension.identity.authenticator.internal;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
-import org.wso2.carbon.identity.application.authentication.framework.ApplicationAuthenticator;
 import org.wso2.carbon.extension.identity.authenticator.RSASecurIdAuthenticator;
-import org.wso2.carbon.user.core.service.RealmService;
-
-import java.util.Hashtable;
+import org.wso2.carbon.identity.application.authentication.framework.ApplicationAuthenticator;
 
 /**
  * @scr.component name="identity.application.authenticator.RSASecurId.component" immediate="true"
  */
 public class RSASecurIdAuthenticatorServiceComponent {
     private static Log log = LogFactory.getLog(RSASecurIdAuthenticatorServiceComponent.class);
-    /**
-     *
-     * @param ctxt
-     */
+
+
     protected void activate(ComponentContext ctxt) {
         try {
             RSASecurIdAuthenticator authenticator = new RSASecurIdAuthenticator();
-            Hashtable<String, String> props = new Hashtable<String, String>();
             ctxt.getBundleContext().registerService(ApplicationAuthenticator.class.getName(),
-                    authenticator, props);
+                    authenticator, null);
             if (log.isDebugEnabled()) {
                 log.debug("RSASecurId authenticator is activated");
             }
@@ -49,10 +44,6 @@ public class RSASecurIdAuthenticatorServiceComponent {
         }
     }
 
-    /**
-     *
-     * @param ctxt
-     */
     protected void deactivate(ComponentContext ctxt) {
         if (log.isDebugEnabled()) {
             log.debug("RSASecurId authenticator is deactivated");

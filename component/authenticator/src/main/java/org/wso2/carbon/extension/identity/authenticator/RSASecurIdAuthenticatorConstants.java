@@ -17,20 +17,15 @@
  *
  */
 package org.wso2.carbon.extension.identity.authenticator;
+
 public class RSASecurIdAuthenticatorConstants {
     public static final String AUTHENTICATOR_NAME = "RSASecurId";
     public static final String AUTHENTICATOR_FRIENDLY_NAME = "RSASecurIdAuthenticator";
-    //RSASecurId authorize endpoint URL
-    public static final String RSASecurId_OAUTH_ENDPOINT = "";
-    //RSASecurId token  endpoint URL
-    public static final String RSASecurId_TOKEN_ENDPOINT = "";
-    //RSASecurId user info endpoint URL
-    public static final String RSASecurId_USERINFO_ENDPOINT = "";
-    public static final String RSA_ID = "http://wso2.org/claims/identity/rsaUserId";
+    public static final String RSASecurId_CLAIM = "http://wso2.org/claims/identity/rsaUserId";
     public static final String LOGIN_ENDPOINT = "securidauthenticationendpoint/login.jsp";
-
     public static final String RSA_USER_TOKEN = "code";
-
+    public static final String RETRY_PARAMS = "&authFailure=true&authFailureMsg=RSA+Login+Failed";
     public static final String RSA_PROPERTIES_FILE = "rsa.properties";
-    private static final String ACCESS_DENIED = "Access Denied";
+    public static final String IDENTIY_CLIAM = "identity";
+
 }

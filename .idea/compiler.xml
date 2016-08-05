@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="!?*.java" />
@@ -22,15 +23,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid.connector" />
         <module name="org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid" target="1.7" />
+      <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid" target="1.5" />
+      <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid.connector" target="1.7" />
       <module name="org.wso2.carbon.extension.identity.authenticator.rsasecurid.feature" target="1.5" />
-      <module name="org.wso2.carbon.extention.identity.authenticator.endpoint" target="1.7" />
       <module name="org.wso2.carbon.extention.identity.authenticator.rsasecurid.endpoint" target="1.7" />
-      <module name="RSA Bundle" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
