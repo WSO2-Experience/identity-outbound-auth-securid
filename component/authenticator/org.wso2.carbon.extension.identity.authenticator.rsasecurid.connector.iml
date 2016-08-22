@@ -200,7 +200,6 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.wso2.orbit.commons-collections:commons-collections:3.2.2.wso2v1" level="project" />
-    <orderEntry type="library" name="Maven: com.rsa.securid:authapi:1.0" level="project" />
   </component>
   <component name="POM File Configuration" pomFile="" />
   <component name="org.twodividedbyzero.idea.findbugs">

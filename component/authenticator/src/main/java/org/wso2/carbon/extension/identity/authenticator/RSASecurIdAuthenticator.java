@@ -65,15 +65,15 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
      * Check authentication request can be handled or not.
      *
      * @param request http servlet request to the authenticator
-     * @return TRUE if RSA_USER_TOKEN exists otherwise FALSE
+     * @return TRUE if RSA_USER_PASSCODE exists otherwise FALSE
      */
     @Override
     public boolean canHandle(HttpServletRequest request) {
         if (log.isDebugEnabled()) {
             log.debug("Inside RSA SecurId Authenticator canHandle()");
         }
-        String userToken = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
-        if (StringUtils.isNotEmpty(userToken)) {
+        String passCode = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_PASSCODE);
+        if (StringUtils.isNotEmpty(passCode)) {
             return true;
         }
         return false;
@@ -123,6 +123,7 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
                             authenticationContext.getContextIdentifier());
             response.sendRedirect(response.encodeRedirectURL(rsaLoginPage
                     + "?" + queryParams + retryParam));
+            //TODO proper prof or remove
             if (log.isDebugEnabled()) {
                 log.debug("Request send to " + rsaLoginPage);
             }
@@ -205,13 +206,14 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
             throw new AuthenticationFailedException("Error occurred while loading user realm or user store manager : ",
                     e);
         }
-        String passCode = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_TOKEN);
+
+        String passCode = request.getParameter(RSASecurIdAuthenticatorConstants.RSA_USER_PASSCODE);
         AuthSessionFactory authSessionFactory = null;
         if (StringUtils.isNotEmpty(rsaUserId) && StringUtils.isNotEmpty(passCode)) {
             AuthSession session = null;
             try {
                 String configPath = CarbonUtils.getCarbonConfigDirPath() + File.separator
-                        + RSASecurIdAuthenticatorConstants.IDENTIY_CLIAM + File.separator;
+                        + RSASecurIdAuthenticatorConstants.IDENTITY_CLAIM + File.separator;
                 configPath = configPath + RSASecurIdAuthenticatorConstants.RSA_PROPERTIES_FILE;
                 authSessionFactory = AuthSessionFactory.getInstance(configPath);
                 session = authSessionFactory.createUserSession();
@@ -223,30 +225,29 @@ public class RSASecurIdAuthenticator extends AbstractApplicationAuthenticator
                 if (authStatus == AuthSession.ACCESS_OK) {
                     authenticationContext.setSubject(authenticatedUser);
                     if (log.isDebugEnabled()) {
-                        log.debug("Subject set to : " + rsaUserId);
+                        log.debug("Subject set to authenticatedUser");
                     }
                 } else {
-                    throw new AuthenticationFailedException("User enters invalid PIN + TOKEN");
+                    throw new AuthenticationFailedException("User enters invalid pass code");
                 }
             } catch (AuthAgentException e) {
-                throw new AuthenticationFailedException("Authentication Agent failed to create connection to authSessionFactory", e);
-
+                throw new AuthenticationFailedException("Authentication Agent failed to create connection to " +
+                        "authSessionFactory", e);
             } finally {
                 if (authSessionFactory != null)
                     try {
+                        //TODO Check the session.close() failed and sessionFactory Not Shutdown
                         session.close();
                         if (log.isDebugEnabled()) {
                             log.debug("Current session is closed");
                         }
                         authSessionFactory.shutdown();
                     } catch (AuthAgentException e) {
-                        throw new AuthenticationFailedException("Could not able to shut down the API", e);
+                        throw new AuthenticationFailedException("Could not able to shutdown the API", e);
                     }
             }
         } else {
-            throw new AuthenticationFailedException("User Id and/or PIN+Token is Empty");
+            throw new AuthenticationFailedException("Pass code is Empty");
         }
     }
-
-
 }
